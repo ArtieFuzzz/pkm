@@ -6,14 +6,6 @@ defmodule Pkm.HTTP.WebSocket do
     {:ok, []}
   end
 
-  #def handle_in({"ping", [opcode: :text]}, state) do
-  #  {:reply, :ok, {:text, "pong"}, state}
-  #end
-
-  #def handle_in({text, [opcode: :text]}, state) do
-  #  {:reply, :ok, {:text, text}, state}
-  #end
-
   def handle_in({payload, [opcode: :text]}, state) do
     case Jason.decode(payload) do
       {:ok, data} -> op(data["op"], data, state)

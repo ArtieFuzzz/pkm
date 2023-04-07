@@ -28,6 +28,7 @@ defmodule Pkm.MixProject do
       {:websock_adapter, "~> 0.5.0"},
       {:plug, "~> 1.14"},
       {:jason, "~> 1.4"},
+      {:telemetry, "~> 1.0"},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false}
     ]
   end

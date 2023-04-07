@@ -16,12 +16,16 @@ defmodule Pkm.Router do
   plug(Plug.Parsers, parsers: [:json], json_decoder: Jason)
 
   get "/" do
+    :telemetry.execute([:router, :http], %{type: "hit"}, %{where: "index"})
+
     conn
     |> put_resp_content_type("application/json")
     |> send_resp(200, Jason.encode!(%Message{message: "Hello, World!"}))
   end
 
   get "/keys" do
+    :telemetry.execute([:router, :http], %{type: "hit"}, %{where: "keys"})
+
     conn =
       conn
       |> fetch_query_params()
@@ -33,6 +37,7 @@ defmodule Pkm.Router do
         conn
         |> put_resp_content_type("application/json")
         |> send_resp(404, Jason.encode!(%Message{message: "Queried Key doesn't exist"}))
+
       _ ->
         conn
         |> put_resp_content_type("application/json")
