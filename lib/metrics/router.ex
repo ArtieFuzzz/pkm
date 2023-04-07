@@ -42,11 +42,7 @@ defmodule Pkm.Metrics.Counter do
     {:reply, state, state}
   end
 
-  def inc() do
-    GenServer.cast(__MODULE__, :inc)
-  end
+  def inc(), do: GenServer.cast(__MODULE__, :inc)
 
-  def now() do
-    GenServer.call(__MODULE__, :now)
-  end
+  def now(), do: GenServer.call(__MODULE__, :now)
 end
